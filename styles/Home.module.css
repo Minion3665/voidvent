@@ -33,12 +33,12 @@
 	padding: 5px;
 	font-size: x-large;
 	color: white;
-	animation: message-fade-in-out 300s;
+	animation: message-fade-in-out 150s;
 }
 
 @keyframes message-fade-in-out {
 	0% {opacity: 0}
-	0.167% {opacity: 1}
+	0.375% {opacity: 1}
 	100% {opacity: 0}
 }
 

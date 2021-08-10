@@ -4,7 +4,7 @@ import {Component} from "react";
 export default class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {messages: [], prev_to: null, to: '', message: ''}
+        this.state = {messages: ['Welcome. Everything you put here is completely private. Messages will fade as they go up the page and disappear after a few minutes, or you can refresh the page to clear them too. Let out your frustrations, and watch them slip away into the void.'], prev_to: null, to: '', message: ''}
 
         this.handleToChange = this.handleToChange.bind(this);
         this.handleMessageChange = this.handleMessageChange.bind(this);
