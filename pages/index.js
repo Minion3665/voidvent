@@ -40,7 +40,7 @@ export default class Home extends Component {
         return (
             <div className={styles.background}>
                 <form onSubmit={this.handleSubmit}>
-                    <input onChange={this.handleToChange} value={this.state.to} placeholder={"Who are you mad at?"}/>
+                    <input onChange={this.handleToChange} value={this.state.to} placeholder={"Who do you want to vent to?"}/>
                     <input onChange={this.handleMessageChange} value={this.state.message} className={styles.thoughts} placeholder={"Type out your thoughts"}/>
                     <button type={"submit"}>Send it off</button>
                 </form>
