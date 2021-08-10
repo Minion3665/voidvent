@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css'
-import {Component} from "react";
+import {Component, createRef} from "react";
 
 export default class Home extends Component {
     constructor(props) {
@@ -9,6 +9,8 @@ export default class Home extends Component {
         this.handleToChange = this.handleToChange.bind(this);
         this.handleMessageChange = this.handleMessageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
+        this.messageInputBox = createRef();
     }
 
     handleToChange(event) {
@@ -22,6 +24,9 @@ export default class Home extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.setState((state) => {
+            try {
+                this.messageInputBox.current.focus();
+            } catch (e) {}  // if we can't focus the message input box just ignore it
             if (state.message === '') return
             let new_messages = state.messages.slice();
             if (state.prev_to !== state.to) {
@@ -41,7 +46,7 @@ export default class Home extends Component {
             <div className={styles.background}>
                 <form onSubmit={this.handleSubmit}>
                     <input onChange={this.handleToChange} value={this.state.to} placeholder={"Who do you want to vent to?"}/>
-                    <input onChange={this.handleMessageChange} value={this.state.message} className={styles.thoughts} placeholder={"Type out your thoughts"}/>
+                    <input ref={this.messageInputBox} onChange={this.handleMessageChange} value={this.state.message} className={styles.thoughts} placeholder={"Type out your thoughts"}/>
                     <button type={"submit"}>Send it off</button>
                 </form>
                 <div className={styles.vents}>
