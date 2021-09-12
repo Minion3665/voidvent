@@ -34,6 +34,7 @@
 	font-size: x-large;
 	color: white;
 	animation: message-fade-in-out 150s;
+	animation-fill-mode: forwards;
 }
 
 @keyframes message-fade-in-out {
