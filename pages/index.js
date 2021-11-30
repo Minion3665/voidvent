@@ -58,8 +58,8 @@ export default class Home extends Component {
                 <div className={styles.vents}>
                     {this.state.messages.map(
                         (message, index) => {
-                            return (<div className={styles.message} key={index}>{message}</div>)
-                        }
+                            return (<div className={styles.message} key={`${this.state.prev_to}${index}`}>{message}</div>)
+			}
                     )}
                     <div className={styles.after}/>
                 </div>
