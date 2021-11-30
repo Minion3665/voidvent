@@ -4,18 +4,13 @@ import {Component, createRef} from "react";
 export default class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {messages: ['Welcome. Everything you put here is completely private. Messages will fade as they go up the page and disappear after a few minutes, or you can refresh the page to clear them too. Let out your frustrations, and watch them slip away into the void.'], prev_to: null, to: '', message: ''}
+        this.state = {messages: ['Welcome. Everything you put here is completely private. Messages will fade as they go up the page and disappear after a few minutes, or you can refresh the page to clear them too. Let out your frustrations, and watch them slip away into the void.'], prev_to: "welcome", message: ''}
 
-        this.handleToChange = this.handleToChange.bind(this);
         this.handleMessageChange = this.handleMessageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClear = this.handleClear.bind(this);
 
         this.messageInputBox = createRef();
-    }
-
-    handleToChange(event) {
-        this.setState({to: event.target.value})
     }
 
     handleMessageChange(event) {
@@ -30,13 +25,13 @@ export default class Home extends Component {
             } catch (e) {}  // if we can't focus the message input box just ignore it
             if (state.message === '') return
             let new_messages = state.messages.slice();
-            if (state.prev_to !== state.to) {
+            if (state.prev_to !== "messages") {
                 new_messages = [];
             }
             new_messages.push(state.message)
             return {
                 messages: new_messages,
-                prev_to: state.to,
+                prev_to: "messages",
                 message: ''
             };
         })
@@ -44,7 +39,7 @@ export default class Home extends Component {
     
     handleClear(event) {
         event.preventDefault();
-        this.setState({prev_to: null, messages: ["Poof: it's gone; hopefully you feel a little better after letting your frustrations out. If there's something you still need to vent about feel free to continue..."], message: ''})
+        this.setState({prev_to: "cleared", messages: ["Poof: it's gone; hopefully you feel a little better after letting your frustrations out. If there's something you still need to vent about feel free to continue..."], message: ''})
     }
 
     render() {
