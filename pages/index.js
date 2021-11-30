@@ -9,6 +9,7 @@ export default class Home extends Component {
         this.handleToChange = this.handleToChange.bind(this);
         this.handleMessageChange = this.handleMessageChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClear = this.handleClear.bind(this);
 
         this.messageInputBox = createRef();
     }
@@ -40,14 +41,19 @@ export default class Home extends Component {
             };
         })
     }
+    
+    handleClear(event) {
+        event.preventDefault();
+        this.setState({prev_to: null, messages: ["Poof: it's gone; hopefully you feel a little better after letting your frustrations out. If there's something you still need to vent about feel free to continue..."], message: ''})
+    }
 
     render() {
         return (
             <div className={styles.background}>
-                <form onSubmit={this.handleSubmit}>
-                    <input onChange={this.handleToChange} value={this.state.to} placeholder={"Who do you want to vent to?"}/>
+                <form onSubmit={this.handleSubmit} onReset={this.handleClear}>
                     <input ref={this.messageInputBox} onChange={this.handleMessageChange} value={this.state.message} className={styles.thoughts} placeholder={"Type out your thoughts"}/>
                     <button type={"submit"}>Send it off</button>
+                    <button type={"reset"}>Clean the void</button>
                 </form>
                 <div className={styles.vents}>
                     {this.state.messages.map(
